@@ -456,9 +456,13 @@ public class ColorProperty : CSSProperty
     {
         foreach (var value in values)
         {
+            var nameValue = value;
+            if (nameValue == "transparent")
+                nameValue = "rgba(0, 0, 0, 0)";
+            
             yield return new string[] {
                 $"{ShortName}-{value}",
-                $"{Name}: {value};",
+                $"{Name}: {nameValue};",
             };
         }
 
