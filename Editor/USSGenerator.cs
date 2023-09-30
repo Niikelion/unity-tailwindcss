@@ -183,7 +183,7 @@ public class FontSizeProperty : CSSProperty
 
 public class SizeProperty : DimensionProperty
 {
-    // w-0	width: 0px;
+    // w-0	width: 0;
     // w-px	width: 1px;
     // w-0.5	width: 0.125rem; /* 2px */
     // w-1	width: 0.25rem; /* 4px */
@@ -474,7 +474,7 @@ public class ColorProperty : CSSProperty
 
 public class BorderRadius : CSSProperty
 {
-    // rounded-none	border-radius: 0px;
+    // rounded-none	border-radius: 0;
     // rounded-sm	border-radius: 0.125rem; /* 2px */
     // rounded	border-radius: 0.25rem; /* 4px */
     // rounded-md	border-radius: 0.375rem; /* 6px */
@@ -486,7 +486,7 @@ public class BorderRadius : CSSProperty
 
     private static readonly string[][] values =
     {
-        new string[] {"none","0px"},
+        new string[] {"none","0"},
         new string[] {"sm","2px"},
         new string[] {"","4px"},
         new string[] {"md","6px"},
@@ -514,13 +514,13 @@ public class BorderRadius : CSSProperty
 
 public class BorderWidth : CSSProperty
 {
-    // border-0	border-width: 0px;
+    // border-0	border-width: 0;
     // border-2	border-width: 2px;
     // border-4	border-width: 4px;
     // border-8	border-width: 8px;
     // border	border-width: 1px;
-    // border-x-0	border-left-width: 0px;
-    // border-right-width: 0px;
+    // border-x-0	border-left-width: 0;
+    // border-right-width: 0;
     // border-x-2	border-left-width: 2px;
     // border-right-width: 2px;
     // border-x-4	border-left-width: 4px;
@@ -529,8 +529,8 @@ public class BorderWidth : CSSProperty
     // border-right-width: 8px;
     // border-x	border-left-width: 1px;
     // border-right-width: 1px;
-    // border-y-0	border-top-width: 0px;
-    // border-bottom-width: 0px;
+    // border-y-0	border-top-width: 0;
+    // border-bottom-width: 0;
     // border-y-2	border-top-width: 2px;
     // border-bottom-width: 2px;
     // border-y-4	border-top-width: 4px;
@@ -539,32 +539,32 @@ public class BorderWidth : CSSProperty
     // border-bottom-width: 8px;
     // border-y	border-top-width: 1px;
     // border-bottom-width: 1px;
-    // border-s-0	border-inline-start-width: 0px;
+    // border-s-0	border-inline-start-width: 0;
     // border-s-2	border-inline-start-width: 2px;
     // border-s-4	border-inline-start-width: 4px;
     // border-s-8	border-inline-start-width: 8px;
     // border-s	border-inline-start-width: 1px;
-    // border-e-0	border-inline-end-width: 0px;
+    // border-e-0	border-inline-end-width: 0;
     // border-e-2	border-inline-end-width: 2px;
     // border-e-4	border-inline-end-width: 4px;
     // border-e-8	border-inline-end-width: 8px;
     // border-e	border-inline-end-width: 1px;
-    // border-t-0	border-top-width: 0px;
+    // border-t-0	border-top-width: 0;
     // border-t-2	border-top-width: 2px;
     // border-t-4	border-top-width: 4px;
     // border-t-8	border-top-width: 8px;
     // border-t	border-top-width: 1px;
-    // border-r-0	border-right-width: 0px;
+    // border-r-0	border-right-width: 0;
     // border-r-2	border-right-width: 2px;
     // border-r-4	border-right-width: 4px;
     // border-r-8	border-right-width: 8px;
     // border-r	border-right-width: 1px;
-    // border-b-0	border-bottom-width: 0px;
+    // border-b-0	border-bottom-width: 0;
     // border-b-2	border-bottom-width: 2px;
     // border-b-4	border-bottom-width: 4px;
     // border-b-8	border-bottom-width: 8px;
     // border-b	border-bottom-width: 1px;
-    // border-l-0	border-left-width: 0px;
+    // border-l-0	border-left-width: 0;
     // border-l-2	border-left-width: 2px;
     // border-l-4	border-left-width: 4px;
     // border-l-8	border-left-width: 8px;
@@ -572,7 +572,7 @@ public class BorderWidth : CSSProperty
 
     private static readonly string[][] values =
     {
-        new string[] {"0","0px"},
+        new string[] {"0","0"},
         new string[] {"2","2px"},
         new string[] {"4","4px"},
         new string[] {"8","8px"},
@@ -596,7 +596,7 @@ public class BorderWidth : CSSProperty
 
 public class MinMaxProperty : CSSProperty
 {
-    // max-w-0	max-width: 0rem; /* 0px */
+    // max-w-0	max-width: 0rem; /* 0 */
     // max-w-none	max-width: none;
     // max-w-xs	max-width: 20rem; /* 320px */
     // max-w-sm	max-width: 24rem; /* 384px */
@@ -622,7 +622,7 @@ public class MinMaxProperty : CSSProperty
 
     private static readonly string[][] values =
     {
-        new string[] {"0","0px"},
+        new string[] {"0","0"},
         // new string[] {"none","none"},x
         new string[] {"xs","320px"},
         new string[] {"sm","384px"},
@@ -858,7 +858,7 @@ public class USSGenerator
             GenerateRules = new string[][] {
                 new string[] {"tracking-tighter", "letter-spacing: -5px"},
                 new string[] {"tracking-tight", "letter-spacing: -2.5px"},
-                new string[] {"tracking-normal", "letter-spacing: 0px"},
+                new string[] {"tracking-normal", "letter-spacing: 0"},
                 new string[] {"tracking-wide", "letter-spacing: 2.5px"},
                 new string[] {"tracking-wider", "letter-spacing: 5px"},
                 new string[] {"tracking-widest", "letter-spacing: 10px"},
