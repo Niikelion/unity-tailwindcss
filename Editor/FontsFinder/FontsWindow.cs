@@ -308,8 +308,9 @@ namespace UnityReactIcons
         {
 #if UNITY_2022_2_OR_NEWER
             return $"<a href=\"{currentIconPack.projectUrl}\">{currentIconPack.projectUrl}</a>";
-#endif
+#else
             return currentIconPack.projectUrl;
+#endif
         }
 
         private void MakeGrid(List<string> iconsList)
