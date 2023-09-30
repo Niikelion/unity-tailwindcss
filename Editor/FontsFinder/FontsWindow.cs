@@ -165,7 +165,7 @@ namespace UnityReactIcons
             // Configure ListViews and search field
             iconPacksListView.makeItem = MakeIconPackItem;
             iconPacksListView.bindItem = BindIconPackItem;
-            iconPacksListView.onSelectionChange += IconPacksSelectionChange;
+            iconPacksListView.selectionChanged += IconPacksSelectionChange;
 
             iconDetailsLabel = root.Q<Label>("iconDetailsLabel");
             importButton = root.Q<Button>(nameof(importButton));
