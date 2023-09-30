@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -69,7 +70,7 @@ public class OpacityProperty : CSSProperty
         {
             yield return new string[] {
                 $"{ShortName}-{i}",
-                $"{Name}: {i / 100f};",
+                $"{Name}: {(i / 100f).ToString("0.00", CultureInfo.InvariantCulture)}"
             };
         }
     }
