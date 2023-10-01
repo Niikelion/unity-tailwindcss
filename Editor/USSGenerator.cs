@@ -964,6 +964,9 @@ justify-content: flex-start | flex-end | center | space-between | space-around
                 new string[] {"items-end", "align-items: flex-end;"},
                 new string[] {"items-center", "align-items: center;"},
                 new string[] {"items-stretch", "align-items: stretch;"},
+                
+                new string[] {"whitespace-normal", "white-space: normal;"},
+                new string[] {"whitespace-nowrap", "white-space: nowrap;"},
             }
         },
         // add more properties here...
