@@ -25,6 +25,8 @@ public abstract class CSSProperty
         new string[] {"l","left"},
         new string[] {"r","right"},
         new string[] {"b","bottom"},
+        new string[] {"x","left", "right"},
+        new string[] {"y","top", "bottom"},
     };
 }
 
@@ -370,16 +372,26 @@ public class DimensionProperty : CSSProperty
             };
         }
 
-        if (directional)
+        if (!directional) yield break;
+        
+        foreach (var direction in directionalValues)
         {
-            foreach (var direction in directionalValues)
+            foreach (var value in values)
             {
-                foreach (var value in values)
+                // Handle horizontal and vertical values
+                if (direction[0] == "x" || direction[0] == "y")
+                {
+                    yield return new string[] {
+                        $"{ShortName}{direction[0]}-{value[0]}",
+                        $"{Name}-{direction[1]}: {value[1]}; {Name}-{direction[2]}: {value[1]};",
+                    };
+                }
+                else
                 {
                     yield return new string[] {
                         $"{ShortName}{direction[0]}-{value[0]}",
                         $"{Name}-{direction[1]}: {value[1]};",
-                    };
+                    };   
                 }
             }
         }
