@@ -164,7 +164,7 @@ namespace UnityReactIcons
             // Configure ListViews and search field
             iconPacksListView.makeItem = MakeIconPackItem;
             iconPacksListView.bindItem = BindIconPackItem;
-            iconPacksListView.onSelectionChange += IconPacksSelectionChange;
+            iconPacksListView.selectionChanged += IconPacksSelectionChange;
 
             iconDetailsLabel = root.Q<Label>("iconDetailsLabel");
             importButton = root.Q<Button>("importButton");
@@ -294,8 +294,9 @@ namespace UnityReactIcons
         {
 #if UNITY_2022_2_OR_NEWER
             return $"<a href=\"{currentIconPack.projectUrl}\">{currentIconPack.projectUrl}</a>";
-#endif
+#else
             return currentIconPack.projectUrl;
+#endif
         }
 
         private void MakeGrid(List<string> iconsList)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ public abstract class CSSProperty
         new string[] {"l","left"},
         new string[] {"r","right"},
         new string[] {"b","bottom"},
+        new string[] {"x","left", "right"},
+        new string[] {"y","top", "bottom"},
     };
 }
 
@@ -69,7 +72,7 @@ public class OpacityProperty : CSSProperty
         {
             yield return new string[] {
                 $"{ShortName}-{i}",
-                $"{Name}: {i / 100f};",
+                $"{Name}: {(i / 100f).ToString("0.00", CultureInfo.InvariantCulture)}"
             };
         }
     }
@@ -182,7 +185,7 @@ public class FontSizeProperty : CSSProperty
 
 public class SizeProperty : DimensionProperty
 {
-    // w-0	width: 0px;
+    // w-0	width: 0;
     // w-px	width: 1px;
     // w-0.5	width: 0.125rem; /* 2px */
     // w-1	width: 0.25rem; /* 4px */
@@ -225,17 +228,17 @@ public class SizeProperty : DimensionProperty
 
         var values = new List<string[]>
         {
-            new string[] { $"0", $"0px" },
+            new string[] { $"0", $"0" },
             new string[] { $"px", $"1px" },
             // use px as unit
 
-            new string[] { $"0.5", $"2px" },
+            new string[] { $"0-5", $"2px" },
             new string[] { $"1", $"4px" },
-            new string[] { $"1.5", $"6px" },
+            new string[] { $"1-5", $"6px" },
             new string[] { $"2", $"8px" },
-            new string[] { $"2.5", $"10px" },
+            new string[] { $"2-5", $"10px" },
             new string[] { $"3", $"12px" },
-            new string[] { $"3.5", $"14px" },
+            new string[] { $"3-5", $"14px" },
             new string[] { $"4", $"16px" },
             new string[] { $"5", $"20px" },
             new string[] { $"6", $"24px" },
@@ -264,32 +267,32 @@ public class SizeProperty : DimensionProperty
             new string[] { $"96", $"384px" },
 
 
-            new string[] { $"1/2", $"50%" },
-            new string[] { $"1/3", $"33.333333%" },
-            new string[] { $"2/3", $"66.666667%" },
-            new string[] { $"1/4", $"25%" },
-            new string[] { $"2/4", $"50%" },
-            new string[] { $"3/4", $"75%" },
-            new string[] { $"1/5", $"20%" },
-            new string[] { $"2/5", $"40%" },
-            new string[] { $"3/5", $"60%" },
-            new string[] { $"4/5", $"80%" },
-            new string[] { $"1/6", $"16.666667%" },
-            new string[] { $"2/6", $"33.333333%" },
-            new string[] { $"3/6", $"50%" },
-            new string[] { $"4/6", $"66.666667%" },
-            new string[] { $"5/6", $"83.333333%" },
-            new string[] { $"1/12", $"8.333333%" },
-            new string[] { $"2/12", $"16.666667%" },
-            new string[] { $"3/12", $"25%" },
-            new string[] { $"4/12", $"33.333333%" },
-            new string[] { $"5/12", $"41.666667%" },
-            new string[] { $"6/12", $"50%" },
-            new string[] { $"7/12", $"58.333333%" },
-            new string[] { $"8/12", $"66.666667%" },
-            new string[] { $"9/12", $"75%" },
-            new string[] { $"10/12", $"83.333333%" },
-            new string[] { $"11/12", $"91.666667%" },
+            new string[] { $"1of2", $"50%" },
+            new string[] { $"1of3", $"33.333333%" },
+            new string[] { $"2of3", $"66.666667%" },
+            new string[] { $"1of4", $"25%" },
+            new string[] { $"2of4", $"50%" },
+            new string[] { $"3of4", $"75%" },
+            new string[] { $"1of5", $"20%" },
+            new string[] { $"2of5", $"40%" },
+            new string[] { $"3of5", $"60%" },
+            new string[] { $"4of5", $"80%" },
+            new string[] { $"1of6", $"16.666667%" },
+            new string[] { $"2of6", $"33.333333%" },
+            new string[] { $"3of6", $"50%" },
+            new string[] { $"4of6", $"66.666667%" },
+            new string[] { $"5of6", $"83.333333%" },
+            new string[] { $"1of12", $"8.333333%" },
+            new string[] { $"2of12", $"16.666667%" },
+            new string[] { $"3of12", $"25%" },
+            new string[] { $"4of12", $"33.333333%" },
+            new string[] { $"5of12", $"41.666667%" },
+            new string[] { $"6of12", $"50%" },
+            new string[] { $"7of12", $"58.333333%" },
+            new string[] { $"8of12", $"66.666667%" },
+            new string[] { $"9of12", $"75%" },
+            new string[] { $"10of12", $"83.333333%" },
+            new string[] { $"11of12", $"91.666667%" },
 
             new string[] { $"full", $"100%" }
         };
@@ -319,11 +322,42 @@ public class DimensionProperty : CSSProperty
 {
     private static readonly string[][] values =
     {
-        new string[] {"0","0"},
         // new string[] {"auto","auto"},
+        new string[] {"0","0"},
+        new string[] {"px","1px"},
+        new string[] {"0-5","2px"},
         new string[] {"1","4px"},
+        new string[] {"1-5","6px"},
         new string[] {"2","8px"},
+        new string[] {"2-5","10px"},
+        new string[] {"3","12px"},
+        new string[] {"3-5","14px"},
         new string[] {"4","16px"},
+        new string[] {"5","20px"},
+        new string[] {"6","24px"},
+        new string[] {"7","28px"},
+        new string[] {"8","32px"},
+        new string[] {"9","36px"},
+        new string[] {"10","40px"},
+        new string[] {"11","44px"},
+        new string[] {"12","48px"},
+        new string[] {"14","56px"},
+        new string[] {"16","64px"},
+        new string[] {"20","80px"},
+        new string[] {"24","96px"},
+        new string[] {"28","112px"},
+        new string[] {"32","128px"},
+        new string[] {"36","144px"},
+        new string[] {"40","160px"},
+        new string[] {"44","176px"},
+        new string[] {"48","192px"},
+        new string[] {"52","208px"},
+        new string[] {"56","224px"},
+        new string[] {"60","240px"},
+        new string[] {"64","256px"},
+        new string[] {"72","288px"},
+        new string[] {"80","320px"},
+        new string[] {"96","384px"},
     };
 
     public DimensionProperty(string name, string shortName) : base(name, shortName) { }
@@ -338,16 +372,26 @@ public class DimensionProperty : CSSProperty
             };
         }
 
-        if (directional)
+        if (!directional) yield break;
+        
+        foreach (var direction in directionalValues)
         {
-            foreach (var direction in directionalValues)
+            foreach (var value in values)
             {
-                foreach (var value in values)
+                // Handle horizontal and vertical values
+                if (direction[0] == "x" || direction[0] == "y")
+                {
+                    yield return new string[] {
+                        $"{ShortName}{direction[0]}-{value[0]}",
+                        $"{Name}-{direction[1]}: {value[1]}; {Name}-{direction[2]}: {value[1]};",
+                    };
+                }
+                else
                 {
                     yield return new string[] {
                         $"{ShortName}{direction[0]}-{value[0]}",
                         $"{Name}-{direction[1]}: {value[1]};",
-                    };
+                    };   
                 }
             }
         }
@@ -455,9 +499,13 @@ public class ColorProperty : CSSProperty
     {
         foreach (var value in values)
         {
+            var nameValue = value;
+            if (nameValue == "transparent")
+                nameValue = "rgba(0, 0, 0, 0)";
+            
             yield return new string[] {
                 $"{ShortName}-{value}",
-                $"{Name}: {value};",
+                $"{Name}: {nameValue};",
             };
         }
 
@@ -473,7 +521,7 @@ public class ColorProperty : CSSProperty
 
 public class BorderRadius : CSSProperty
 {
-    // rounded-none	border-radius: 0px;
+    // rounded-none	border-radius: 0;
     // rounded-sm	border-radius: 0.125rem; /* 2px */
     // rounded	border-radius: 0.25rem; /* 4px */
     // rounded-md	border-radius: 0.375rem; /* 6px */
@@ -485,7 +533,7 @@ public class BorderRadius : CSSProperty
 
     private static readonly string[][] values =
     {
-        new string[] {"none","0px"},
+        new string[] {"none","0"},
         new string[] {"sm","2px"},
         new string[] {"","4px"},
         new string[] {"md","6px"},
@@ -513,13 +561,13 @@ public class BorderRadius : CSSProperty
 
 public class BorderWidth : CSSProperty
 {
-    // border-0	border-width: 0px;
+    // border-0	border-width: 0;
     // border-2	border-width: 2px;
     // border-4	border-width: 4px;
     // border-8	border-width: 8px;
     // border	border-width: 1px;
-    // border-x-0	border-left-width: 0px;
-    // border-right-width: 0px;
+    // border-x-0	border-left-width: 0;
+    // border-right-width: 0;
     // border-x-2	border-left-width: 2px;
     // border-right-width: 2px;
     // border-x-4	border-left-width: 4px;
@@ -528,8 +576,8 @@ public class BorderWidth : CSSProperty
     // border-right-width: 8px;
     // border-x	border-left-width: 1px;
     // border-right-width: 1px;
-    // border-y-0	border-top-width: 0px;
-    // border-bottom-width: 0px;
+    // border-y-0	border-top-width: 0;
+    // border-bottom-width: 0;
     // border-y-2	border-top-width: 2px;
     // border-bottom-width: 2px;
     // border-y-4	border-top-width: 4px;
@@ -538,32 +586,32 @@ public class BorderWidth : CSSProperty
     // border-bottom-width: 8px;
     // border-y	border-top-width: 1px;
     // border-bottom-width: 1px;
-    // border-s-0	border-inline-start-width: 0px;
+    // border-s-0	border-inline-start-width: 0;
     // border-s-2	border-inline-start-width: 2px;
     // border-s-4	border-inline-start-width: 4px;
     // border-s-8	border-inline-start-width: 8px;
     // border-s	border-inline-start-width: 1px;
-    // border-e-0	border-inline-end-width: 0px;
+    // border-e-0	border-inline-end-width: 0;
     // border-e-2	border-inline-end-width: 2px;
     // border-e-4	border-inline-end-width: 4px;
     // border-e-8	border-inline-end-width: 8px;
     // border-e	border-inline-end-width: 1px;
-    // border-t-0	border-top-width: 0px;
+    // border-t-0	border-top-width: 0;
     // border-t-2	border-top-width: 2px;
     // border-t-4	border-top-width: 4px;
     // border-t-8	border-top-width: 8px;
     // border-t	border-top-width: 1px;
-    // border-r-0	border-right-width: 0px;
+    // border-r-0	border-right-width: 0;
     // border-r-2	border-right-width: 2px;
     // border-r-4	border-right-width: 4px;
     // border-r-8	border-right-width: 8px;
     // border-r	border-right-width: 1px;
-    // border-b-0	border-bottom-width: 0px;
+    // border-b-0	border-bottom-width: 0;
     // border-b-2	border-bottom-width: 2px;
     // border-b-4	border-bottom-width: 4px;
     // border-b-8	border-bottom-width: 8px;
     // border-b	border-bottom-width: 1px;
-    // border-l-0	border-left-width: 0px;
+    // border-l-0	border-left-width: 0;
     // border-l-2	border-left-width: 2px;
     // border-l-4	border-left-width: 4px;
     // border-l-8	border-left-width: 8px;
@@ -571,7 +619,7 @@ public class BorderWidth : CSSProperty
 
     private static readonly string[][] values =
     {
-        new string[] {"0","0px"},
+        new string[] {"0","0"},
         new string[] {"2","2px"},
         new string[] {"4","4px"},
         new string[] {"8","8px"},
@@ -595,7 +643,7 @@ public class BorderWidth : CSSProperty
 
 public class MinMaxProperty : CSSProperty
 {
-    // max-w-0	max-width: 0rem; /* 0px */
+    // max-w-0	max-width: 0rem; /* 0 */
     // max-w-none	max-width: none;
     // max-w-xs	max-width: 20rem; /* 320px */
     // max-w-sm	max-width: 24rem; /* 384px */
@@ -621,7 +669,7 @@ public class MinMaxProperty : CSSProperty
 
     private static readonly string[][] values =
     {
-        new string[] {"0","0px"},
+        new string[] {"0","0"},
         // new string[] {"none","none"},x
         new string[] {"xs","320px"},
         new string[] {"sm","384px"},
@@ -857,7 +905,7 @@ public class USSGenerator
             GenerateRules = new string[][] {
                 new string[] {"tracking-tighter", "letter-spacing: -5px"},
                 new string[] {"tracking-tight", "letter-spacing: -2.5px"},
-                new string[] {"tracking-normal", "letter-spacing: 0px"},
+                new string[] {"tracking-normal", "letter-spacing: 0"},
                 new string[] {"tracking-wide", "letter-spacing: 2.5px"},
                 new string[] {"tracking-wider", "letter-spacing: 5px"},
                 new string[] {"tracking-widest", "letter-spacing: 10px"},
@@ -916,6 +964,9 @@ justify-content: flex-start | flex-end | center | space-between | space-around
                 new string[] {"items-end", "align-items: flex-end;"},
                 new string[] {"items-center", "align-items: center;"},
                 new string[] {"items-stretch", "align-items: stretch;"},
+                
+                new string[] {"whitespace-normal", "white-space: normal;"},
+                new string[] {"whitespace-nowrap", "white-space: nowrap;"},
             }
         },
         // add more properties here...
